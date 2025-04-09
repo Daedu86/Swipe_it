@@ -1,0 +1,132 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmbx8n24vl3sh"]
+
+[ext_resource type="Script" uid="uid://k3bkmj0hjcpg" path="res://Game-Ver2.gd" id="1_glv2v"]
+[ext_resource type="Texture2D" uid="uid://q1xv0d0hdjqr" path="res://Prinbles_GUI_Asset_Bliss (1.0.0)/asset/svg/Star/Large/Active.svg" id="2_uu6xs"]
+[ext_resource type="Texture2D" uid="uid://c63x58nfen05j" path="res://Prinbles_GUI_Asset_Bliss (1.0.0)/asset/@previews/Scene/Home@2x.png" id="3_r0du0"]
+[ext_resource type="Script" uid="uid://b42mb7wja3hx3" path="res://UIManager.gd" id="4_cm0pq"]
+
+[node name="MainScene (Node2D)" type="Node2D"]
+position = Vector2(2, 2)
+script = ExtResource("1_glv2v")
+
+[node name="WordLabelContainer" type="Node2D" parent="."]
+position = Vector2(416, 290)
+scale = Vector2(1.11495, 1.25849)
+
+[node name="WordLabel" type="Label" parent="WordLabelContainer"]
+offset_left = 27.804
+offset_top = -11.9191
+offset_right = 122.804
+offset_bottom = 11.0809
+metadata/_edit_use_anchors_ = true
+
+[node name="Collector1" type="Node2D" parent="."]
+position = Vector2(852, 303)
+
+[node name="CollectorLabel" type="Label" parent="Collector1"]
+show_behind_parent = true
+offset_left = -46.0
+offset_top = -69.0
+offset_right = 81.0
+offset_bottom = -46.0
+scale = Vector2(1.13836, 1.4832)
+text = "maskulin"
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Collector1"]
+position = Vector2(-2.46094, 14.5996)
+scale = Vector2(1.32135, 1.25334)
+texture = ExtResource("2_uu6xs")
+
+[node name="Collector2" type="Node2D" parent="."]
+position = Vector2(254, 316)
+
+[node name="Sprite2D" type="Sprite2D" parent="Collector2"]
+position = Vector2(30.0176, 22.1797)
+scale = Vector2(1.37739, 1.26267)
+texture = ExtResource("2_uu6xs")
+
+[node name="CollectorLabel2" type="Label" parent="Collector2"]
+offset_left = -26.0
+offset_top = -66.0
+offset_right = 99.0
+offset_bottom = -37.0
+text = "weiblich"
+metadata/_edit_use_anchors_ = true
+
+[node name="Collector3" type="Node2D" parent="."]
+position = Vector2(495, 485)
+
+[node name="CollectorLabel3" type="Label" parent="Collector3"]
+offset_left = -31.0
+offset_top = -74.0
+offset_right = 96.0
+offset_bottom = -51.0
+scale = Vector2(1.13836, 1.4832)
+text = "neutral"
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Collector3"]
+position = Vector2(-0.548828, -1.40036)
+scale = Vector2(1.4122, 1.14223)
+texture = ExtResource("2_uu6xs")
+
+[node name="ExitDialog" type="ConfirmationDialog" parent="."]
+process_mode = 2
+
+[node name="OkButton" type="Button" parent="ExitDialog"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 192.0
+offset_bottom = 51.0
+
+[node name="CancelButton" type="Button" parent="ExitDialog"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 192.0
+offset_bottom = 51.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+show_behind_parent = true
+light_mask = 0
+visibility_layer = 4
+position = Vector2(466, -140)
+scale = Vector2(0.862891, 1.12639)
+texture = ExtResource("3_r0du0")
+
+[node name="UIManager" type="Node" parent="."]
+script = ExtResource("4_cm0pq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="UIManager"]
+
+[node name="ScoreLabel" type="Label" parent="UIManager/CanvasLayer"]
+custom_minimum_size = Vector2(10, 10)
+anchors_preset = -1
+anchor_left = 0.466
+anchor_top = 0.177
+anchor_right = 0.466
+anchor_bottom = 0.177
+offset_left = -180.832
+offset_top = -54.696
+offset_right = -137.832
+offset_bottom = -31.696
+text = "Score"
+
+[node name="StopButton" type="Button" parent="UIManager/CanvasLayer"]
+offset_left = 325.0
+offset_top = 99.0
+offset_right = 424.0
+offset_bottom = 130.0
+text = "STOP GAME"
+
+[node name="RestartButton" type="Button" parent="UIManager/CanvasLayer"]
+offset_left = 75.0
+offset_top = 99.0
+offset_right = 200.0
+offset_bottom = 130.0
+text = "RESTART GAME"
+
+[connection signal="pressed" from="ExitDialog/OkButton" to="." method="confirm_exit"]
+[connection signal="pressed" from="ExitDialog/CancelButton" to="." method="cancel_exit"]
+[connection signal="pressed" from="UIManager/CanvasLayer/StopButton" to="." method="stop_game"]
+[connection signal="pressed" from="UIManager/CanvasLayer/RestartButton" to="." method="_on_RestartButton_pressed"]
